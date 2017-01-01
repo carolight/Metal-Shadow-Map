@@ -1,5 +1,5 @@
 # Metal-Shadow-Map
-Simple Metal shadow map
+
 
 
 Simple shadow map in Metal.
