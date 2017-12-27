@@ -36,6 +36,7 @@ class ViewController: UIViewController {
       fatalError()
     }
     metalView.clearColor = MTLClearColor(red: 0, green: 0, blue: 1, alpha: 1)
+    metalView.depthStencilPixelFormat = .depth32Float
     
     renderer = Renderer(device: device)
     metalView.delegate = renderer
