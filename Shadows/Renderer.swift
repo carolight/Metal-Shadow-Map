@@ -99,6 +99,7 @@ class Renderer: NSObject {
     pipelineDescriptor.vertexFunction = vertexFunction
     pipelineDescriptor.fragmentFunction = fragmentFunction
     pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+    pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
     
     do {
       pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
@@ -117,6 +118,7 @@ class Renderer: NSObject {
     let shadowTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .depth32Float,
                                                                            width: 1024, height: 1024,
                                                                            mipmapped: false)
+    shadowTextureDescriptor.usage = [.shaderRead, .renderTarget]
     shadowTexture = device.makeTexture(descriptor: shadowTextureDescriptor)
     guard let shadowTexture = shadowTexture else { return }
     shadowTexture.label = "shadow map"
@@ -151,6 +153,7 @@ class Renderer: NSObject {
     colorPipelineDescriptor.vertexFunction = vertexFunction
     colorPipelineDescriptor.fragmentFunction = colorFunction
     colorPipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+    colorPipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
     
     do {
       colorPipelineState = try device.makeRenderPipelineState(descriptor: colorPipelineDescriptor)
