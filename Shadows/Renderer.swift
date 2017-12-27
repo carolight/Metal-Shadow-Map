@@ -99,7 +99,6 @@ class Renderer: NSObject {
     pipelineDescriptor.vertexFunction = vertexFunction
     pipelineDescriptor.fragmentFunction = fragmentFunction
     pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
-    pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
     
     do {
       pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
